@@ -21,6 +21,7 @@ var gameObj = {
     wordList: ["Mighty Mouse", "Underdog", "Speedy Gonzales", "Speed Racer", "Bugs Bunny", "Daffy Duck",
                 "Wiley Coyote", "The Roadrunner"],
     lives: 0,
+    level: 1,
     selectedWord:"",
     guessedWord:"",
     displayStr: "",
@@ -66,6 +67,12 @@ var gameObj = {
         if(this.selectedWord.includes(this.guessedWord))
         {
             this.victoryDance();
+            this.wordList.pop(this.selectedWord);
+            this.selectWord();
+
+        }
+        if(this.lives < 0){
+            this.sadStance();
         }
         this.showLives();
     },
@@ -86,17 +93,29 @@ var gameObj = {
     victoryDance: function () {
         console.log("Victory!! You Win");
         document.querySelector("#win-or-lose").innerHTML = '<div class="text-center">YOU WIN!!!</div>';
+        gameObj.selectWord();
     },
     sadStance: function () {
         console.log('You Lose :(  Better luck next time...');
+        document.querySelector("#win-or-lose").innerHTML = '<div class="text-center">You Lose :( Sad Day...</div>';
+        gameObj.gameStatus = "stopped";
     }
 };
+var startBtn = document.querySelector("#start-button");
+startBtn.addEventListener("click", function(){
+    if(gameObj.gameStatus === "stopped"){
+        startBtn.remove();
+        document.querySelector('#setting-modal').classList.remove('show');
+    }
+});
+
 
 document.addEventListener('keyup', function(e){
     console.log('Key Clicked');
     if(gameObj.gameStatus === "stopped"){
         gameObj.gameStatus = "started";
         document.querySelector('#start-message').remove();
+        document.querySelector('#modal-start-msg').remove();
         gameObj.showLives();
     }
     else if(gameObj.gameStatus === "started" && gameObj.lives > -1){

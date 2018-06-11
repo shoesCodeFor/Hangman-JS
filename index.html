@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="container">
-            <div id="settings" data-toggle="modal" data-target="#settingsModal">
+            <div id="settings" data-toggle="modal" data-target="#settings-modal">
                 <i class="fas fa-cog"></i>
             </div>
             <div class="row">
@@ -47,16 +47,16 @@
         </div>
     </div>
     <!-- Settings Modal -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="settings-modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="settingsModalLabel">Settings <i class="fas fa-cog"></i></h5>
+                    <h5 class="modal-title" id="settings-modalLabel">Settings <i class="fas fa-cog"></i></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <p class="text-center">Press any key to begin...</p>
+                <p id="modal-start-msg" class="text-center">Press any key to begin...</p>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="categorySelect">Word category:</label>
@@ -68,7 +68,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button id="save-state" type="button" class="btn btn-primary">Save Changes</button>
-                    <button id="game-mode" type="button" class="btn btn-success">Start Game</button>
+                    <button id="start-button" type="button" class="btn btn-success">Start Game</button>
                 </div>
             </div>
         </div>
