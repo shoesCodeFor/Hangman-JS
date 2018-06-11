@@ -65,7 +65,7 @@ var gameObj = {
         }
         if(this.selectedWord.includes(this.guessedWord))
         {
-            console.log("Victory!! You Win");
+            this.victoryDance();
         }
         this.showLives();
     },
@@ -84,7 +84,8 @@ var gameObj = {
         displayDiv.innerHTML = this.lives;
     },
     victoryDance: function () {
-        console.log('You Win!!');
+        console.log("Victory!! You Win");
+        document.querySelector("#win-or-lose").innerHTML = '<div class="text-center">YOU WIN!!!</div>';
     },
     sadStance: function () {
         console.log('You Lose :(  Better luck next time...');
@@ -95,6 +96,8 @@ document.addEventListener('keyup', function(e){
     console.log('Key Clicked');
     if(gameObj.gameStatus === "stopped"){
         gameObj.gameStatus = "started";
+        document.querySelector('#start-message').remove();
+        gameObj.showLives();
     }
     else if(gameObj.gameStatus === "started" && gameObj.lives > -1){
         console.log("Key Pressed: " + e.key);
