@@ -11,7 +11,7 @@ const keysDiv = document.querySelector("#letters");
 console.log(keysDiv);
 keys.forEach(function (element) {
     let btn = document.createElement('button');
-    btn.setAttribute('class', 'btn btn-secondary');
+    btn.setAttribute('class', 'btn btn-secondary kb-btn');
     btn.textContent = element;
     btn.addEventListener('click', function(){
         gameObj.checkGuess(element);

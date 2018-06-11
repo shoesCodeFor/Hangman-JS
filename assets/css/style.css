@@ -7,20 +7,27 @@ body{
     background-size: 100% 200%;
     padding-top: 50px;
 }
-.btn-secondary{
+.kb-btn{
     box-shadow: 3px 3px 3px black !important;
     border-color: #101519;
 }
-.btn-secondary:hover{
+.kb-btn:hover{
     box-shadow: 0px 0px !important;
+}
+#guessCounter{
+    margin-top: 20px;
 }
 #name{
     color: white;
+}
+#settings{
+    font-size: 2rem;
+    position: absolute;
+    left: 2vw;
+    top: 2vh;
 }
 #word-panel{
     letter-spacing: 20px;
     line-height: 1.6;
 }
-#guessCounter{
-    margin-top: 20px;
-}
+

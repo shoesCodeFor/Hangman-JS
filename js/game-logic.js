@@ -13,7 +13,9 @@ function replaceAt(string, index, replace) {
 // Because I don't like to type
 var cLog = function (el){console.log(el)};
 
-
+// Theme song - Saddle up
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "assets/audio/TGTBTU.mp3");
 
 var gameObj = {
     wordList: ["Mighty Mouse", "Underdog", "Speedy Gonzales", "Speed Racer"], //, "Underdog"
@@ -21,6 +23,7 @@ var gameObj = {
     selectedWord:"",
     guessedWord:"",
     displayStr: "",
+    gameStatus:"stopped",
     badGuesses:[],
     selectWord: function (){
         var wordIndex = Math.floor(Math.random() * this.wordList.length);
@@ -56,13 +59,10 @@ var gameObj = {
             }
 
         }
-        if(this.playerWins)
+        if(this.selectedWord.includes(this.guessedWord))
         {
-
+            console.log("Victory!! You Win");
         }
-    },
-    playerWins: function () {
-        return (this.guessedWord === this.selectedWord ? true:false);
     },
     endGame: function () {
         window.location.reload();
@@ -81,6 +81,17 @@ var gameObj = {
         console.log('You Lose :(  Better luck next time...');
     }
 };
+
+document.addEventListener('keyup', function(e){
+    console.log('Key Clicked');
+    if(gameObj.gameStatus === "stopped"){
+        gameObj.gameStatus = "started";
+    }
+    else if(gameObj.gameStatus === "started" && gameObj.lives > -1){
+        console.log("Key Pressed: " + e.key);
+        gameObj.checkGuess(e.key);
+    }
+});
 
 // Tests
 gameObj.selectWord();
