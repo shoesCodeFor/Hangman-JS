@@ -17,7 +17,7 @@ var cLog = function (el){console.log(el)};
 
 var gameObj = {
     wordList: ["Mighty Mouse", "Underdog", "Speedy Gonzales", "Speed Racer"], //, "Underdog"
-    guesses: 0,
+    lives: 0,
     selectedWord:"",
     guessedWord:"",
     displayStr: "",
@@ -88,83 +88,3 @@ gameObj.selectWord();
 
 
 
-
-
-// // Game Logic
-// const startGame = function (){
-//     gameObj.selectWord();
-// };
-//
-// const endGame = function () {
-//     window.location.reload();
-// };
-//
-// const giveUp = function (){
-//     showWord();
-// };
-// const win = function(){
-//     showWord();
-//     victoryDance();
-// };
-// const lose = function () {
-//
-// };
-//
-// // Trigger on win or giveUp
-// const showWord = function (){
-//     console.log(gameObj.selectedWord);
-// };
-// // Play some music and an animation
-// const victoryDance = function () {
-//
-// };
-// const totalFailure = function (){
-//
-// };
-// var wordToGuess = "Pasta"; // Just an example, your real word should come from an array
-//
-// var displayWord = "_ "; // Will provide on blank space
-// var guessedWord = " ";
-// displayWord = displayWord.repeat(wordToGuess.length); // will create a display string "_ _ _ _ _ "
-// guessedWord = guessedWord.repeat(wordToGuess.length); // will create an empty string as long as the wordToGuess
-// console.log(displayWord + '?');
-//
-//
-// if(!wordToGuess.includes(guessedWord)){
-//     /* Then the user has not won the game
-//     You characters to check will go down here....
-//
-//     Something like an outside function that check on character to see if its in the wordToGuess, but not in the guessedWord
-//     */
-//
-// }
-
-// var guessedWord = "";
-// var randomItem = "Parlor";
-// var guessedCharacter = "r";
-//
-//
-//
-//
-//
-//
-// function blankSpaces(){
-//     for(var i; i < randomItem.length; i++){
-//         if(randomItem[i] === " "){
-//             guessedWord += " ";
-//         }
-//         else{
-//             guessedWord += "_";
-//         }
-//     }
-// }
-// blankSpaces();
-// console.log(guessedWord);
-//
-// for(var i =0; i < randomItem.length; i++){
-//     if(randomItem[i].toLowerCase() === guessedCharacter){
-//         guessedWord = replaceAt(guessedWord, i, guessedCharacter);
-//     }
-// }
-//
-// console.log(guessedWord);
