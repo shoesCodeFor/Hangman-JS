@@ -31,12 +31,13 @@
                 <div class="row">
                     <div id="guessCounter" class="col-12">
                         <div><h3>Remaining Lives</h3></div>
-                        <div id="livesCount" class="display-3">6</div>
+                        <div id="lives-count" class="display-3"></div>
                     </div>
                 </div>
                 <div class="row">
-                    <div id="badGuesses" class="col-12">
+                    <div class="col-12">
                       <br><h4>Incorrect Guesses:</h4><br>
+                      <div id="bad-guesses"></div>
                     </div>
                 </div>
             </div>
@@ -52,17 +53,19 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <p class="text-center">Press any key to begin...</p>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="categorySelect">Word category:</label>
                         <select class="form-control" id="categorySelect">
-                            <option>Cartoon Charactes</option>
+                            <option>Cartoon Characters</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button id="save-state" type="button" class="btn btn-primary">Save Changes</button>
+                    <button id="game-mode" type="button" class="btn btn-success">Start Game</button>
                 </div>
             </div>
         </div>

@@ -18,7 +18,8 @@ var audioElement = document.createElement("audio");
 audioElement.setAttribute("src", "assets/audio/TGTBTU.mp3");
 
 var gameObj = {
-    wordList: ["Mighty Mouse", "Underdog", "Speedy Gonzales", "Speed Racer"], //, "Underdog"
+    wordList: ["Mighty Mouse", "Underdog", "Speedy Gonzales", "Speed Racer", "Bugs Bunny", "Daffy Duck",
+                "Wiley Coyote", "The Roadrunner"],
     lives: 0,
     selectedWord:"",
     guessedWord:"",
@@ -46,6 +47,7 @@ var gameObj = {
     },
     startGame: function (){
         this.selectWord();
+        this.lives = 20;
     },
     checkGuess: function(char){
         for(var i =0; i < this.selectedWord.length; i++){
@@ -54,8 +56,10 @@ var gameObj = {
                 this.showWord();
                 console.log(this.guessedWord);
             }
-            else{
+            else if(i === (this.selectedWord.length-1) && !this.selectedWord.toLowerCase().includes(char)){
                 this.badGuesses.push(char);
+                this.lives--;
+                console.log(this.badGuesses);
             }
 
         }
@@ -63,6 +67,7 @@ var gameObj = {
         {
             console.log("Victory!! You Win");
         }
+        this.showLives();
     },
     endGame: function () {
         window.location.reload();
@@ -73,6 +78,10 @@ var gameObj = {
     showWord: function (){
         var displayStr = document.querySelector("#word-panel");
         displayStr.innerHTML = this.guessedWord;
+    },
+    showLives: function (){
+        var displayDiv = document.querySelector("#lives-count");
+        displayDiv.innerHTML = this.lives;
     },
     victoryDance: function () {
         console.log('You Win!!');
@@ -94,7 +103,7 @@ document.addEventListener('keyup', function(e){
 });
 
 // Tests
-gameObj.selectWord();
+gameObj.startGame();
 // cLog(gameObj.badGuesses);
 
 

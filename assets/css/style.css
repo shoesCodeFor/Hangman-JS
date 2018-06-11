@@ -4,7 +4,7 @@
 body{
     background: url(../images/western.jpg);
     background-repeat: no-repeat;
-    background-size: 100% 200%;
+    background-size: cover;
     padding-top: 50px;
 }
 .kb-btn{
