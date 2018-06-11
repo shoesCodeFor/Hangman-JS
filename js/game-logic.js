@@ -1,7 +1,14 @@
 // Tools Declaration
 // Borrowed from: https://gist.github.com/efenacigiray/9367920
 function replaceAt(string, index, replace) {
-    return string.substring(0, index) + replace + string.substring(index + 1);
+    if(index == (string.length-1)){
+        console.log('The last char')
+    }
+    var reply = string.substring(0, index) + replace + string.substring(index + 1);
+    console.log(reply);
+    return reply;
+
+
 }
 // Because I don't like to type
 var cLog = function (el){console.log(el)};
@@ -9,10 +16,10 @@ var cLog = function (el){console.log(el)};
 
 
 var gameObj = {
-    wordList: ["Mighty Mouse"], //, "Underdog"
+    wordList: ["Mighty Mouse", "Underdog", "Speedy Gonzales", "Speed Racer"], //, "Underdog"
     guesses: 0,
     selectedWord:"",
-    guessedWord:" ",
+    guessedWord:"",
     displayStr: "",
     badGuesses:[],
     selectWord: function (){
@@ -21,32 +28,41 @@ var gameObj = {
         this.lengthenWords();
     },
     lengthenWords: function(){
-        var repeatLength = this.selectedWord.length;
-        this.guessedWord = this.guessedWord.repeat(repeatLength);
-        this.formatDisplayStr(this.selectedWord);
+        this.guessedWord = this.formatDisplayStr(this.selectedWord);
+        document.getElementById('word-panel').textContent = this.guessedWord;
     },
     formatDisplayStr: function (str){
-        for(i in str){
+        for(var i = 0; i < str.length; i++){
             if(str.charAt(i) === " "){
-                this.displayStr += "  ";
+                this.displayStr += "\u0020";  // Using the Unicode space fixes this for some reason
             }
-            else{this.displayStr += "_ "}
+            else{this.displayStr += "_"}
         }
+        console.log(this.displayStr);
+        return this.displayStr;
     },
     startGame: function (){
         this.selectWord();
     },
     checkGuess: function(char){
-        if(this.selectedWord.includes(char) && !this.guessedWord.includes(char)){
-            var i = this.selectedWord.indexOf(char);
-            this.guessedWord = replaceAt(this.guessedWord, i, char);
+        for(var i =0; i < this.selectedWord.length; i++){
+            if(this.selectedWord[i].toLowerCase() === char){
+                this.guessedWord = replaceAt(this.guessedWord, i, this.selectedWord[i]);
+                this.showWord();
+                console.log(this.guessedWord);
+            }
+            else{
+                this.badGuesses.push(char);
+            }
+
         }
-        else{
-            this.badGuesses.push(char);
+        if(this.playerWins)
+        {
+
         }
     },
-    didPlayerWin: function () {
-        return this.is(this.guessedWord, this.selectedWord);
+    playerWins: function () {
+        return (this.guessedWord === this.selectedWord ? true:false);
     },
     endGame: function () {
         window.location.reload();
@@ -55,8 +71,8 @@ var gameObj = {
         this.showWord();
     },
     showWord: function (){
-        var displayStr = document.querySelector("#displayed-word");
-        displayStr.textContent(this.selectedWord);
+        var displayStr = document.querySelector("#word-panel");
+        displayStr.innerHTML = this.guessedWord;
     },
     victoryDance: function () {
         console.log('You Win!!');
@@ -68,13 +84,7 @@ var gameObj = {
 
 // Tests
 gameObj.selectWord();
-console.log(gameObj.selectedWord);
-console.log(gameObj);
-gameObj.checkGuess('o');
-gameObj.checkGuess('M');
-gameObj.checkGuess('5');
-console.log(gameObj.guessedWord);
-cLog(gameObj.badGuesses);
+// cLog(gameObj.badGuesses);
 
 
 
@@ -128,3 +138,33 @@ cLog(gameObj.badGuesses);
 //     */
 //
 // }
+
+// var guessedWord = "";
+// var randomItem = "Parlor";
+// var guessedCharacter = "r";
+//
+//
+//
+//
+//
+//
+// function blankSpaces(){
+//     for(var i; i < randomItem.length; i++){
+//         if(randomItem[i] === " "){
+//             guessedWord += " ";
+//         }
+//         else{
+//             guessedWord += "_";
+//         }
+//     }
+// }
+// blankSpaces();
+// console.log(guessedWord);
+//
+// for(var i =0; i < randomItem.length; i++){
+//     if(randomItem[i].toLowerCase() === guessedCharacter){
+//         guessedWord = replaceAt(guessedWord, i, guessedCharacter);
+//     }
+// }
+//
+// console.log(guessedWord);
